@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect, useRef, useCallback } from "react"
 import { ProductCard } from "@/components/product-card"
 import type { ModelData } from "@/components/product-card"
 import { LiquidGlassHeader } from "@/components/liquid-glass-header"
@@ -8,7 +8,7 @@ import { SearchFilterBar } from "@/components/search-filter-bar"
 import { ModelExpandedView } from "@/components/model-expanded-view"
 import { UserSidebar } from "@/components/user-sidebar"
 
-const models: ModelData[] = [
+const baseModels: ModelData[] = [
   {
     name: "Yardenlasry",
     size: "6 GB",
@@ -84,12 +84,47 @@ const models: ModelData[] = [
 ]
 
 export default function Home() {
+  const [displayedModels, setDisplayedModels] = useState<ModelData[]>([...baseModels])
   const [expandedIndex, setExpandedIndex] = useState<number | null>(null)
   const [sidebarOpen, setSidebarOpen] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
+  const sentinelRef = useRef<HTMLDivElement>(null)
+
+  const loadMore = useCallback(() => {
+    if (isLoading) return
+    setIsLoading(true)
+    // Simulate a short load delay, then append the base set again
+    setTimeout(() => {
+      setDisplayedModels((prev) => [...prev, ...baseModels])
+      setIsLoading(false)
+    }, 300)
+  }, [isLoading])
+
+  useEffect(() => {
+    const sentinel = sentinelRef.current
+    if (!sentinel) return
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          loadMore()
+        }
+      },
+      { rootMargin: "400px" }
+    )
+
+    observer.observe(sentinel)
+    return () => observer.disconnect()
+  }, [loadMore])
 
   const handleMoreClick = (index: number) => {
     setExpandedIndex(expandedIndex === index ? null : index)
   }
+
+  // Resolve the actual model from the base set for the expanded view
+  const resolvedExpandedModel = expandedIndex !== null
+    ? baseModels[expandedIndex % baseModels.length]
+    : null
 
   return (
     <main className="min-h-screen bg-background">
@@ -99,22 +134,33 @@ export default function Home() {
       <div className="pt-20 px-4 md:px-6 lg:px-8 max-w-7xl mx-auto">
         <SearchFilterBar />
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mt-6 pb-8">
-          {models.map((model, index) => (
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mt-6 pb-4">
+          {displayedModels.map((model, index) => (
             <ProductCard
-              key={index}
+              key={`${model.name}-${index}`}
               {...model}
               onMoreClick={() => handleMoreClick(index)}
             />
           ))}
         </div>
+
+        {/* Sentinel for infinite scroll + loading indicator */}
+        <div ref={sentinelRef} className="flex items-center justify-center py-8">
+          {isLoading && (
+            <div className="flex items-center gap-3">
+              <div className="w-2 h-2 rounded-full bg-brand-400 animate-pulse" />
+              <div className="w-2 h-2 rounded-full bg-brand-400 animate-pulse [animation-delay:150ms]" />
+              <div className="w-2 h-2 rounded-full bg-brand-400 animate-pulse [animation-delay:300ms]" />
+            </div>
+          )}
+        </div>
       </div>
 
       {/* Overlay - cards stay visible underneath */}
-      {expandedIndex !== null && (
+      {resolvedExpandedModel && expandedIndex !== null && (
         <ModelExpandedView
-          model={models[expandedIndex]}
-          relatedModels={models.filter((_, idx) => idx !== expandedIndex)}
+          model={resolvedExpandedModel}
+          relatedModels={baseModels.filter((_, idx) => idx !== expandedIndex % baseModels.length)}
           onClose={() => setExpandedIndex(null)}
         />
       )}
