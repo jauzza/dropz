@@ -3,17 +3,17 @@
 import { useState } from "react"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
-import { 
-  HardDrive, 
-  FolderOpen, 
-  Clock, 
+import {
+  HardDrive,
+  FolderOpen,
+  Clock,
   Zap,
   ExternalLink,
-  AtSign,
-  MoreHorizontal
+  Globe,
+  MoreHorizontal,
 } from "lucide-react"
 
-interface ModelCardProps {
+export interface ModelData {
   name: string
   size: string
   downloads: number
@@ -21,6 +21,10 @@ interface ModelCardProps {
   timeAgo: string
   imageSrc: string
   isVerified?: boolean
+}
+
+interface ProductCardProps extends ModelData {
+  onMoreClick?: () => void
 }
 
 export function ProductCard({
@@ -31,30 +35,30 @@ export function ProductCard({
   timeAgo = "38 minutes ago",
   imageSrc = "/images/goy.png",
   isVerified = true,
-}: ModelCardProps) {
+  onMoreClick,
+}: ProductCardProps) {
   const [isHovered, setIsHovered] = useState(false)
 
   return (
-    <div 
-      className="relative w-full overflow-hidden rounded-2xl bg-gradient-to-br from-white/[0.08] to-white/[0.02] backdrop-blur-2xl border border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.2),inset_0_1px_0_rgba(255,255,255,0.1)] transition-all duration-300 hover:shadow-[0_12px_40px_rgba(236,72,153,0.15),inset_0_1px_0_rgba(255,255,255,0.15)] hover:border-pink-500/20 group"
+    <div
+      className="relative w-full overflow-hidden rounded-2xl bg-gradient-to-br from-pink-500/[0.06] via-white/[0.05] to-white/[0.02] backdrop-blur-2xl border border-white/[0.08] shadow-[0_8px_32px_rgba(0,0,0,0.2),inset_0_1px_0_rgba(255,255,255,0.06)] transition-all duration-300 hover:shadow-[0_12px_40px_rgba(236,72,153,0.1),inset_0_1px_0_rgba(255,255,255,0.1)] hover:border-white/[0.14] group"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      {/* Pink accent line at top */}
-      <div className="absolute top-0 left-0 right-0 h-1 bg-pink-500" />
-      
       {/* Top Bar Container - Liquid Glass */}
-      <div className="p-4 pb-3">
-        <div className="backdrop-blur-xl bg-white/5 rounded-xl p-3 border border-white/10 shadow-[inset_0_1px_1px_rgba(255,255,255,0.1),0_4px_12px_rgba(0,0,0,0.1)]">
+      <div className="p-3 pb-2">
+        <div className="backdrop-blur-xl bg-white/[0.04] rounded-xl p-3 border border-white/[0.07] shadow-[inset_0_1px_1px_rgba(255,255,255,0.05)]">
           <div className="flex items-center justify-between">
-            <h3 className="text-base font-semibold text-foreground tracking-tight truncate pr-2">{name}</h3>
+            <h3 className="text-base font-semibold text-foreground tracking-tight truncate pr-2">
+              {name}
+            </h3>
             {isVerified && (
-              <div className="flex items-center justify-center w-6 h-6 rounded-full bg-pink-500/20 border border-pink-500/40 flex-shrink-0">
+              <div className="flex items-center justify-center w-6 h-6 rounded-full bg-pink-500/15 border border-pink-500/25 flex-shrink-0">
                 <Zap className="w-3.5 h-3.5 text-pink-400" />
               </div>
             )}
           </div>
-          
+
           {/* Stats Row */}
           <div className="flex items-center flex-wrap gap-x-3 gap-y-1 mt-2 text-xs text-muted-foreground">
             <div className="flex items-center gap-1">
@@ -77,8 +81,8 @@ export function ProductCard({
         </div>
       </div>
 
-      {/* Image Container - Contained within card */}
-      <div className="px-4">
+      {/* Image Container */}
+      <div className="px-3">
         <div className="relative aspect-[4/5] overflow-hidden rounded-xl bg-black/20">
           <Image
             src={imageSrc || "/placeholder.svg"}
@@ -90,28 +94,34 @@ export function ProductCard({
       </div>
 
       {/* Bottom Bar Container - Liquid Glass */}
-      <div className="p-4 pt-3">
-        <div className="backdrop-blur-xl bg-white/5 rounded-xl p-2.5 border border-white/10 shadow-[inset_0_1px_1px_rgba(255,255,255,0.1),0_4px_12px_rgba(0,0,0,0.1)]">
+      <div className="p-3 pt-2">
+        <div className="backdrop-blur-xl bg-white/[0.04] rounded-xl p-2 border border-white/[0.07] shadow-[inset_0_1px_1px_rgba(255,255,255,0.05)]">
           <div className="flex items-center gap-2">
-            <Button 
-              size="sm" 
-              className="flex-1 bg-pink-500/15 text-pink-400 hover:bg-pink-500/25 border border-pink-500/30 text-xs h-8 font-medium"
+            <Button
+              size="sm"
+              className="flex-1 bg-pink-500/10 text-pink-400 hover:bg-pink-500/20 border border-pink-500/20 text-xs h-8 font-medium"
             >
               <ExternalLink className="w-3.5 h-3.5 mr-1.5" />
               Open Link
             </Button>
-            <Button 
-              size="sm" 
-              variant="outline"
-              className="flex-1 bg-white/5 text-foreground hover:bg-white/10 border-white/10 text-xs h-8 font-medium backdrop-blur-sm"
+            <Button
+              size="sm"
+              className="flex-1 bg-white/[0.04] text-foreground hover:bg-white/[0.08] border border-white/[0.08] text-xs h-8 font-medium"
+              onClick={(e) => {
+                e.stopPropagation()
+                onMoreClick?.()
+              }}
             >
-              <AtSign className="w-3.5 h-3.5 mr-1.5" />
+              <Globe className="w-3.5 h-3.5 mr-1.5" />
               More
             </Button>
-            <Button 
-              size="icon" 
-              variant="outline"
-              className="bg-white/5 text-muted-foreground hover:bg-white/10 border-white/10 h-8 w-8 backdrop-blur-sm"
+            <Button
+              size="icon"
+              className="bg-white/[0.04] text-muted-foreground hover:bg-white/[0.08] border border-white/[0.08] h-8 w-8"
+              onClick={(e) => {
+                e.stopPropagation()
+                onMoreClick?.()
+              }}
             >
               <MoreHorizontal className="w-4 h-4" />
             </Button>
