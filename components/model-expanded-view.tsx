@@ -5,8 +5,11 @@ import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import {
   X,
-  Share2,
-  Flag,
+  Bookmark,
+  BookOpen,
+  LayoutGrid,
+  Calendar,
+  User2,
   HardDrive,
   FolderOpen,
   Clock,
@@ -113,31 +116,56 @@ export function ModelExpandedView({
             <div className="w-10 h-1 rounded-full bg-white/20" />
           </div>
 
-          {/* Top Actions Row */}
+          {/* Model Info Header */}
           <div className="flex items-center justify-between px-5 pb-3">
-            <div className="flex items-center gap-2">
+            {/* Left: Name + details */}
+            <div className="flex flex-col gap-0.5 min-w-0">
+              <div className="flex items-center gap-2">
+                <h2 className="text-lg font-bold text-foreground truncate">{model.name}</h2>
+                <span className="text-base flex-shrink-0" role="img" aria-label="flag">🇺🇸</span>
+              </div>
+              <div className="flex items-center gap-3 text-xs text-muted-foreground">
+                <span className="flex items-center gap-1">
+                  <Calendar className="w-3 h-3" />
+                  {'33 jaar oud'}
+                </span>
+                <span className="flex items-center gap-1">
+                  <User2 className="w-3 h-3" />
+                  {'Latina'}
+                </span>
+              </div>
+            </div>
+
+            {/* Right: Action buttons */}
+            <div className="flex items-center gap-2 flex-shrink-0">
               <Button
-                size="sm"
-                className="bg-white/[0.05] text-foreground hover:bg-white/[0.1] border border-white/[0.08] text-xs h-8 font-medium"
+                size="icon"
+                className="bg-white/[0.05] text-muted-foreground hover:text-foreground hover:bg-white/[0.1] border border-white/[0.08] h-9 w-9"
               >
-                <Share2 className="w-3.5 h-3.5 mr-1.5" />
-                Share
+                <Bookmark className="w-4 h-4" />
               </Button>
               <Button
                 size="sm"
-                className="bg-white/[0.05] text-foreground hover:bg-white/[0.1] border border-white/[0.08] text-xs h-8 font-medium"
+                className="bg-white/[0.05] text-foreground hover:bg-white/[0.1] border border-white/[0.08] text-xs h-9 font-medium"
               >
-                <Flag className="w-3.5 h-3.5 mr-1.5" />
-                Report
+                <BookOpen className="w-3.5 h-3.5 mr-1.5" />
+                Open Creator
+              </Button>
+              <Button
+                size="sm"
+                className="bg-white/[0.05] text-foreground hover:bg-white/[0.1] border border-white/[0.08] text-xs h-9 font-medium"
+              >
+                <LayoutGrid className="w-3.5 h-3.5 mr-1.5" />
+                Alle Profielen
+              </Button>
+              <Button
+                size="icon"
+                className="bg-white/[0.05] text-foreground hover:bg-white/[0.1] border border-white/[0.08] h-9 w-9"
+                onClick={onClose}
+              >
+                <X className="w-4 h-4" />
               </Button>
             </div>
-            <Button
-              size="icon"
-              className="bg-white/[0.05] text-foreground hover:bg-white/[0.1] border border-white/[0.08] h-8 w-8"
-              onClick={onClose}
-            >
-              <X className="w-4 h-4" />
-            </Button>
           </div>
 
           {/* Content area */}
