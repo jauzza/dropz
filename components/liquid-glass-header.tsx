@@ -3,7 +3,11 @@
 import { ShoppingCart, Sparkles, Globe, Link2, User } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
-export function LiquidGlassHeader() {
+interface LiquidGlassHeaderProps {
+  onUserClick?: () => void
+}
+
+export function LiquidGlassHeader({ onUserClick }: LiquidGlassHeaderProps) {
   return (
     <header className="fixed top-0 left-0 right-0 z-50">
       {/* Liquid Glass Effect */}
@@ -77,6 +81,7 @@ export function LiquidGlassHeader() {
               variant="ghost" 
               size="icon" 
               className="text-muted-foreground hover:text-foreground h-9 w-9"
+              onClick={onUserClick}
             >
               <User className="w-5 h-5" />
             </Button>

@@ -6,6 +6,7 @@ import type { ModelData } from "@/components/product-card"
 import { LiquidGlassHeader } from "@/components/liquid-glass-header"
 import { SearchFilterBar } from "@/components/search-filter-bar"
 import { ModelExpandedView } from "@/components/model-expanded-view"
+import { UserSidebar } from "@/components/user-sidebar"
 
 const models: ModelData[] = [
   {
@@ -84,6 +85,7 @@ const models: ModelData[] = [
 
 export default function Home() {
   const [expandedIndex, setExpandedIndex] = useState<number | null>(null)
+  const [sidebarOpen, setSidebarOpen] = useState(false)
 
   const handleMoreClick = (index: number) => {
     setExpandedIndex(expandedIndex === index ? null : index)
@@ -91,7 +93,8 @@ export default function Home() {
 
   return (
     <main className="min-h-screen bg-background">
-      <LiquidGlassHeader />
+      <LiquidGlassHeader onUserClick={() => setSidebarOpen(true)} />
+      <UserSidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
 
       <div className="pt-20 px-4 md:px-6 lg:px-8 max-w-7xl mx-auto">
         <SearchFilterBar />
