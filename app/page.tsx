@@ -85,64 +85,8 @@ const models: ModelData[] = [
 export default function Home() {
   const [expandedIndex, setExpandedIndex] = useState<number | null>(null)
 
-  // Figure out which row the expanded card is in (4 cols on xl, 3 on lg, etc.)
-  // We insert the expanded view after the last card in the same row
-  const getInsertionIndex = (index: number, cols: number) => {
-    const row = Math.floor(index / cols)
-    return Math.min((row + 1) * cols, models.length)
-  }
-
   const handleMoreClick = (index: number) => {
     setExpandedIndex(expandedIndex === index ? null : index)
-  }
-
-  // Build the card grid with inline expanded views
-  const renderGrid = () => {
-    const items: React.ReactNode[] = []
-    let insertedExpanded = false
-
-    for (let i = 0; i < models.length; i++) {
-      items.push(
-        <ProductCard
-          key={`card-${i}`}
-          {...models[i]}
-          onMoreClick={() => handleMoreClick(i)}
-        />
-      )
-
-      // Check if we should insert the expanded view after this card
-      // We use xl:4 cols as the default; the expanded view spans all columns
-      if (expandedIndex !== null && !insertedExpanded) {
-        const insertAt = getInsertionIndex(expandedIndex, 4)
-        if (i + 1 === insertAt || i === models.length - 1) {
-          const relatedModels = models.filter((_, idx) => idx !== expandedIndex)
-          items.push(
-            <ModelExpandedView
-              key="expanded"
-              model={models[expandedIndex]}
-              relatedModels={relatedModels}
-              onClose={() => setExpandedIndex(null)}
-            />
-          )
-          insertedExpanded = true
-        }
-      }
-    }
-
-    // Edge case: if expanded was requested but not yet inserted
-    if (expandedIndex !== null && !insertedExpanded) {
-      const relatedModels = models.filter((_, idx) => idx !== expandedIndex)
-      items.push(
-        <ModelExpandedView
-          key="expanded"
-          model={models[expandedIndex]}
-          relatedModels={relatedModels}
-          onClose={() => setExpandedIndex(null)}
-        />
-      )
-    }
-
-    return items
   }
 
   return (
@@ -153,9 +97,24 @@ export default function Home() {
         <SearchFilterBar />
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mt-6 pb-8">
-          {renderGrid()}
+          {models.map((model, index) => (
+            <ProductCard
+              key={index}
+              {...model}
+              onMoreClick={() => handleMoreClick(index)}
+            />
+          ))}
         </div>
       </div>
+
+      {/* Overlay - cards stay visible underneath */}
+      {expandedIndex !== null && (
+        <ModelExpandedView
+          model={models[expandedIndex]}
+          relatedModels={models.filter((_, idx) => idx !== expandedIndex)}
+          onClose={() => setExpandedIndex(null)}
+        />
+      )}
     </main>
   )
 }
