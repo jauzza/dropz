@@ -95,38 +95,55 @@ export function UserSidebar({ isOpen, onClose }: UserSidebarProps) {
             </div>
 
             {/* User Profile Card */}
-            <div className="relative backdrop-blur-2xl bg-gradient-to-br from-pink-500/[0.1] via-white/[0.06] to-rose-500/[0.05] rounded-2xl p-6 border border-pink-400/[0.12] shadow-[inset_0_1px_1px_rgba(255,255,255,0.1),inset_0_-1px_1px_rgba(0,0,0,0.1),0_8px_32px_rgba(236,72,153,0.08)] mb-5 overflow-hidden">
-              {/* Decorative glows to fill empty space */}
-              <div className="absolute top-0 left-1/2 -translate-x-1/2 w-48 h-28 bg-pink-500/[0.12] blur-[60px] rounded-full" />
-              <div className="absolute bottom-0 right-0 w-32 h-32 bg-rose-400/[0.06] blur-[40px] rounded-full" />
-              <div className="absolute top-1/2 left-0 w-24 h-24 bg-pink-300/[0.05] blur-[30px] rounded-full" />
+            <div className="relative backdrop-blur-2xl bg-gradient-to-b from-pink-950/40 via-pink-950/20 to-rose-950/30 rounded-2xl p-8 border border-pink-400/[0.1] shadow-[inset_0_1px_1px_rgba(255,255,255,0.06),inset_0_-1px_1px_rgba(0,0,0,0.1),0_8px_32px_rgba(236,72,153,0.06)] mb-5 overflow-hidden">
+              {/* Side glows - strong left and right edge lighting */}
+              <div className="absolute top-1/2 -translate-y-1/2 -left-10 w-32 h-48 bg-pink-500/[0.18] blur-[50px] rounded-full" />
+              <div className="absolute top-1/2 -translate-y-1/2 -right-10 w-32 h-48 bg-rose-500/[0.15] blur-[50px] rounded-full" />
+              {/* Top center glow behind avatar */}
+              <div className="absolute -top-8 left-1/2 -translate-x-1/2 w-40 h-40 bg-pink-500/[0.15] blur-[60px] rounded-full" />
+              {/* Bottom ambient glow */}
+              <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 w-48 h-24 bg-rose-500/[0.1] blur-[40px] rounded-full" />
               
-              {/* Avatar circle */}
-              <div className="relative flex justify-center mb-3">
-                <div className="w-16 h-16 rounded-full bg-gradient-to-br from-pink-500/20 to-rose-500/10 border border-pink-400/20 flex items-center justify-center shadow-[0_0_24px_rgba(236,72,153,0.15),inset_0_1px_1px_rgba(255,255,255,0.1)]">
-                  <span className="text-2xl font-bold text-pink-300/80">A</span>
+              {/* Avatar circle with pink ring */}
+              <div className="relative flex justify-center mb-4">
+                <div className="relative">
+                  {/* Outer glow ring */}
+                  <div className="absolute -inset-2 rounded-full bg-pink-500/[0.08] blur-[8px]" />
+                  {/* Avatar */}
+                  <div className="relative w-20 h-20 rounded-full bg-gradient-to-br from-pink-900/60 to-rose-900/40 border-2 border-pink-400/30 flex items-center justify-center shadow-[0_0_30px_rgba(236,72,153,0.2),inset_0_2px_4px_rgba(255,255,255,0.08)]">
+                    <span className="text-3xl font-bold text-pink-300/90">A</span>
+                  </div>
                 </div>
               </div>
 
               {/* Badge */}
               <div className="relative flex justify-center mb-2">
-                <span className="px-4 py-1 text-[10px] font-bold tracking-widest uppercase text-yellow-300 bg-yellow-500/10 rounded-full border border-yellow-400/20 backdrop-blur-sm shadow-[0_0_12px_rgba(234,179,8,0.1)]">
+                <span className="px-5 py-1 text-[10px] font-bold tracking-widest uppercase text-yellow-300 bg-yellow-500/10 rounded-full border border-yellow-400/25 backdrop-blur-sm shadow-[0_0_16px_rgba(234,179,8,0.1)]">
                   Basic
                 </span>
               </div>
 
-              <h3 className="relative text-xl font-bold text-foreground text-center">Anonymous</h3>
+              <h3 className="relative text-xl font-bold text-foreground text-center mb-5">Anonymous</h3>
 
-              {/* Keys display */}
-              <div className="relative flex items-center justify-center gap-2.5 mt-4">
-                <div className="flex items-center gap-2 px-4 py-2 rounded-xl bg-pink-500/[0.08] border border-pink-400/[0.12] backdrop-blur-sm shadow-[inset_0_1px_0_rgba(255,255,255,0.06)]">
-                  <div className="w-7 h-7 rounded-full bg-pink-500/20 border border-pink-500/25 flex items-center justify-center shadow-[0_0_12px_rgba(236,72,153,0.2)]">
-                    <Key className="w-3.5 h-3.5 text-pink-400" />
+              {/* Keys display - layered concentric rings */}
+              <div className="relative flex items-center justify-center mt-1">
+                <div className="relative">
+                  {/* Outer ring glow */}
+                  <div className="absolute -inset-3 rounded-2xl bg-pink-500/[0.06] blur-[6px]" />
+                  {/* Outer container ring */}
+                  <div className="relative flex items-center gap-3 px-6 py-3 rounded-2xl bg-pink-500/[0.06] border border-pink-400/[0.12] backdrop-blur-sm shadow-[0_0_20px_rgba(236,72,153,0.08),inset_0_1px_1px_rgba(255,255,255,0.06),inset_0_-1px_1px_rgba(0,0,0,0.1)]">
+                    {/* Key icon with inner ring */}
+                    <div className="relative">
+                      <div className="absolute -inset-1 rounded-full bg-pink-500/[0.1] blur-[4px]" />
+                      <div className="relative w-9 h-9 rounded-full bg-pink-500/15 border border-pink-400/25 flex items-center justify-center shadow-[0_0_14px_rgba(236,72,153,0.25),inset_0_1px_1px_rgba(255,255,255,0.1)]">
+                        <Key className="w-4 h-4 text-pink-400" />
+                      </div>
+                    </div>
+                    <span className="text-2xl font-bold text-foreground">3</span>
                   </div>
-                  <span className="text-xl font-bold text-foreground">3</span>
                 </div>
               </div>
-              <p className="relative text-center text-sm text-pink-400/70 mt-3 flex items-center justify-center gap-1.5">
+              <p className="relative text-center text-sm text-pink-400/60 mt-4 flex items-center justify-center gap-1.5">
                 <Key className="w-3.5 h-3.5" />
                 3 keys per day
               </p>
