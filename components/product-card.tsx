@@ -41,7 +41,7 @@ export function ProductCard({
 
   return (
     <div
-      className="relative w-full overflow-hidden rounded-2xl bg-gradient-to-br from-pink-500/[0.06] via-white/[0.05] to-white/[0.02] backdrop-blur-2xl border border-white/[0.08] shadow-[0_8px_32px_rgba(0,0,0,0.2),inset_0_1px_0_rgba(255,255,255,0.06)] transition-all duration-300 hover:shadow-[0_12px_40px_rgba(236,72,153,0.1),inset_0_1px_0_rgba(255,255,255,0.1)] hover:border-white/[0.14] group"
+      className="relative w-full overflow-hidden rounded-2xl bg-gradient-to-br from-brand-500/[0.06] via-white/[0.05] to-white/[0.02] backdrop-blur-2xl border border-white/[0.08] shadow-[0_8px_32px_rgba(0,0,0,0.2),inset_0_1px_0_rgba(255,255,255,0.06)] transition-all duration-300 hover:shadow-[0_12px_40px_var(--brand-500)/0.1,inset_0_1px_0_rgba(255,255,255,0.1)] hover:border-white/[0.14] group"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >

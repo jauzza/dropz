@@ -113,6 +113,35 @@
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
+
+  /* Brand accent shades */
+  --color-brand-300: var(--brand-300);
+  --color-brand-400: var(--brand-400);
+  --color-brand-500: var(--brand-500);
+  --color-brand-600: var(--brand-600);
+  --color-brand-900: var(--brand-900);
+  --color-brand-950: var(--brand-950);
+}
+
+/*
+ * =============================================
+ *  BRAND ACCENT COLOR
+ *  Change these values to retheme the entire site.
+ *  All components reference these variables.
+ * =============================================
+ */
+:root {
+  /* Brand color (pink) — HSL values for Tailwind arbitrary usage */
+  --brand-hue: 330;
+  --brand-sat: 80%;
+
+  /* Ready-made shades */
+  --brand-300: hsl(var(--brand-hue), var(--brand-sat), 75%);
+  --brand-400: hsl(var(--brand-hue), var(--brand-sat), 65%);
+  --brand-500: hsl(var(--brand-hue), var(--brand-sat), 55%);
+  --brand-600: hsl(var(--brand-hue), var(--brand-sat), 45%);
+  --brand-900: hsl(var(--brand-hue), var(--brand-sat), 18%);
+  --brand-950: hsl(var(--brand-hue), var(--brand-sat), 12%);
 }
 
 @layer base {
