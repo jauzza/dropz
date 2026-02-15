@@ -60,7 +60,7 @@ export function UserSidebar({ isOpen, onClose }: UserSidebarProps) {
           isOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
-        <div className="h-full bg-gradient-to-bl from-pink-500/[0.04] via-background/90 to-background/95 backdrop-blur-3xl border-l border-white/[0.06] overflow-y-auto scrollbar-thin shadow-[inset_1px_0_0_rgba(255,255,255,0.04),-20px_0_60px_rgba(0,0,0,0.3)]">
+        <div className="h-full bg-gradient-to-bl from-pink-500/[0.07] via-background/95 to-background backdrop-blur-3xl border-l border-pink-400/[0.08] overflow-y-auto scrollbar-thin shadow-[inset_1px_0_0_rgba(255,255,255,0.06),-20px_0_60px_rgba(0,0,0,0.4)]">
           <div className="p-5">
 
             {/* Close Button */}
@@ -95,30 +95,46 @@ export function UserSidebar({ isOpen, onClose }: UserSidebarProps) {
             </div>
 
             {/* User Profile Card */}
-            <div className="relative backdrop-blur-2xl bg-gradient-to-br from-white/[0.06] to-white/[0.02] rounded-2xl p-6 border border-white/[0.08] shadow-[inset_0_1px_1px_rgba(255,255,255,0.08),inset_0_-1px_1px_rgba(0,0,0,0.1),0_8px_32px_rgba(0,0,0,0.15)] mb-5 overflow-hidden">
-              {/* Soft pink glow */}
-              <div className="absolute top-0 left-1/2 -translate-x-1/2 w-40 h-20 bg-pink-500/10 blur-3xl rounded-full" />
+            <div className="relative backdrop-blur-2xl bg-gradient-to-br from-pink-500/[0.1] via-white/[0.06] to-rose-500/[0.05] rounded-2xl p-6 border border-pink-400/[0.12] shadow-[inset_0_1px_1px_rgba(255,255,255,0.1),inset_0_-1px_1px_rgba(0,0,0,0.1),0_8px_32px_rgba(236,72,153,0.08)] mb-5 overflow-hidden">
+              {/* Decorative glows to fill empty space */}
+              <div className="absolute top-0 left-1/2 -translate-x-1/2 w-48 h-28 bg-pink-500/[0.12] blur-[60px] rounded-full" />
+              <div className="absolute bottom-0 right-0 w-32 h-32 bg-rose-400/[0.06] blur-[40px] rounded-full" />
+              <div className="absolute top-1/2 left-0 w-24 h-24 bg-pink-300/[0.05] blur-[30px] rounded-full" />
               
+              {/* Avatar circle */}
               <div className="relative flex justify-center mb-3">
-                <span className="px-4 py-1 text-xs font-bold tracking-wide text-yellow-300 bg-yellow-500/10 rounded-full border border-yellow-400/20 backdrop-blur-sm shadow-[0_0_12px_rgba(234,179,8,0.1)]">
+                <div className="w-16 h-16 rounded-full bg-gradient-to-br from-pink-500/20 to-rose-500/10 border border-pink-400/20 flex items-center justify-center shadow-[0_0_24px_rgba(236,72,153,0.15),inset_0_1px_1px_rgba(255,255,255,0.1)]">
+                  <span className="text-2xl font-bold text-pink-300/80">A</span>
+                </div>
+              </div>
+
+              {/* Badge */}
+              <div className="relative flex justify-center mb-2">
+                <span className="px-4 py-1 text-[10px] font-bold tracking-widest uppercase text-yellow-300 bg-yellow-500/10 rounded-full border border-yellow-400/20 backdrop-blur-sm shadow-[0_0_12px_rgba(234,179,8,0.1)]">
                   Basic
                 </span>
               </div>
+
               <h3 className="relative text-xl font-bold text-foreground text-center">Anonymous</h3>
-              <div className="relative flex items-center justify-center gap-2 mt-3">
-                <div className="w-7 h-7 rounded-full bg-pink-500/15 border border-pink-500/25 flex items-center justify-center shadow-[0_0_10px_rgba(236,72,153,0.15)]">
-                  <Key className="w-3.5 h-3.5 text-pink-400" />
+
+              {/* Keys display */}
+              <div className="relative flex items-center justify-center gap-2.5 mt-4">
+                <div className="flex items-center gap-2 px-4 py-2 rounded-xl bg-pink-500/[0.08] border border-pink-400/[0.12] backdrop-blur-sm shadow-[inset_0_1px_0_rgba(255,255,255,0.06)]">
+                  <div className="w-7 h-7 rounded-full bg-pink-500/20 border border-pink-500/25 flex items-center justify-center shadow-[0_0_12px_rgba(236,72,153,0.2)]">
+                    <Key className="w-3.5 h-3.5 text-pink-400" />
+                  </div>
+                  <span className="text-xl font-bold text-foreground">3</span>
                 </div>
-                <span className="text-xl font-bold text-foreground">3</span>
               </div>
-              <p className="relative text-center text-sm text-pink-400/80 mt-2 flex items-center justify-center gap-1.5">
+              <p className="relative text-center text-sm text-pink-400/70 mt-3 flex items-center justify-center gap-1.5">
                 <Key className="w-3.5 h-3.5" />
                 3 keys per day
               </p>
             </div>
 
             {/* Settings Card */}
-            <div className="backdrop-blur-2xl bg-gradient-to-br from-white/[0.05] to-white/[0.02] rounded-2xl p-5 border border-white/[0.08] shadow-[inset_0_1px_1px_rgba(255,255,255,0.06),0_6px_24px_rgba(0,0,0,0.12)] mb-5">
+            <div className="relative backdrop-blur-2xl bg-gradient-to-br from-pink-500/[0.05] via-white/[0.04] to-white/[0.02] rounded-2xl p-5 border border-pink-400/[0.08] shadow-[inset_0_1px_1px_rgba(255,255,255,0.06),0_6px_24px_rgba(0,0,0,0.12)] mb-5 overflow-hidden">
+              <div className="absolute -top-6 -right-6 w-24 h-24 bg-pink-500/[0.06] blur-[30px] rounded-full" />
               <h4 className="text-sm font-semibold text-foreground mb-4">Settings</h4>
 
               {/* Display Mode */}
@@ -156,27 +172,33 @@ export function UserSidebar({ isOpen, onClose }: UserSidebarProps) {
             <h4 className="text-base font-semibold text-foreground mb-3">{"Need more keys?"}</h4>
             <div className="grid grid-cols-2 gap-3 mb-5">
               {/* Premium */}
-              <div className="relative backdrop-blur-2xl bg-gradient-to-br from-white/[0.06] to-white/[0.02] rounded-2xl p-4 border border-white/[0.08] shadow-[inset_0_1px_1px_rgba(255,255,255,0.06),0_6px_24px_rgba(0,0,0,0.12)] overflow-hidden">
-                <div className="absolute -top-4 -right-4 w-16 h-16 bg-pink-500/8 blur-2xl rounded-full" />
+              <div className="relative backdrop-blur-2xl bg-gradient-to-br from-pink-500/[0.08] via-white/[0.05] to-white/[0.02] rounded-2xl p-4 border border-pink-400/[0.1] shadow-[inset_0_1px_1px_rgba(255,255,255,0.08),0_6px_24px_rgba(0,0,0,0.12)] overflow-hidden">
+                <div className="absolute -top-6 -right-6 w-20 h-20 bg-pink-400/[0.1] blur-[30px] rounded-full" />
+                <div className="absolute bottom-0 left-0 w-16 h-16 bg-rose-400/[0.06] blur-[25px] rounded-full" />
                 <div className="relative flex items-center gap-2 mb-2">
-                  <Crown className="w-5 h-5 text-pink-400" />
+                  <div className="w-8 h-8 rounded-lg bg-pink-500/15 border border-pink-400/20 flex items-center justify-center shadow-[0_0_10px_rgba(236,72,153,0.12)]">
+                    <Crown className="w-4 h-4 text-pink-400" />
+                  </div>
                   <span className="text-lg font-bold text-foreground">Premium</span>
                 </div>
                 <p className="relative text-xs text-foreground/50 mb-3">
                   {"starting at "}
                   <span className="text-pink-400 font-semibold">$7.99</span>
                 </p>
-                <button className="relative w-full flex items-center justify-center gap-1.5 py-2 text-xs font-medium text-foreground/70 backdrop-blur-xl bg-white/[0.04] rounded-lg border border-white/[0.08] hover:bg-white/[0.08] transition-all shadow-[inset_0_1px_0_rgba(255,255,255,0.04)]">
+                <button className="relative w-full flex items-center justify-center gap-1.5 py-2 text-xs font-medium text-pink-300/80 backdrop-blur-xl bg-pink-500/[0.08] rounded-lg border border-pink-400/[0.12] hover:bg-pink-500/[0.15] transition-all shadow-[inset_0_1px_0_rgba(255,255,255,0.06)]">
                   <ShoppingCart className="w-3 h-3" />
                   Get Premium
                 </button>
               </div>
 
               {/* AdMaven */}
-              <div className="relative backdrop-blur-2xl bg-gradient-to-br from-pink-500/[0.08] to-rose-500/[0.04] rounded-2xl p-4 border border-pink-500/[0.1] shadow-[inset_0_1px_1px_rgba(255,255,255,0.06),0_6px_24px_rgba(0,0,0,0.12)] overflow-hidden">
-                <div className="absolute -top-4 -left-4 w-16 h-16 bg-pink-500/10 blur-2xl rounded-full" />
+              <div className="relative backdrop-blur-2xl bg-gradient-to-br from-rose-500/[0.1] via-pink-500/[0.06] to-white/[0.02] rounded-2xl p-4 border border-pink-400/[0.1] shadow-[inset_0_1px_1px_rgba(255,255,255,0.08),0_6px_24px_rgba(0,0,0,0.12)] overflow-hidden">
+                <div className="absolute -top-4 -left-4 w-20 h-20 bg-rose-500/[0.1] blur-[30px] rounded-full" />
+                <div className="absolute bottom-0 right-0 w-16 h-16 bg-pink-500/[0.07] blur-[25px] rounded-full" />
                 <div className="relative flex items-center gap-2 mb-2">
-                  <Megaphone className="w-5 h-5 text-pink-400" />
+                  <div className="w-8 h-8 rounded-lg bg-rose-500/15 border border-rose-400/20 flex items-center justify-center shadow-[0_0_10px_rgba(244,63,94,0.12)]">
+                    <Megaphone className="w-4 h-4 text-pink-400" />
+                  </div>
                   <span className="text-lg font-bold text-foreground">AdMaven</span>
                 </div>
                 <p className="relative text-xs text-pink-400/70 mb-3">5 Key Refills Remaining</p>
@@ -186,10 +208,13 @@ export function UserSidebar({ isOpen, onClose }: UserSidebarProps) {
               </div>
 
               {/* Lockr */}
-              <div className="relative backdrop-blur-2xl bg-gradient-to-br from-rose-500/[0.06] to-pink-500/[0.03] rounded-2xl p-4 border border-white/[0.08] shadow-[inset_0_1px_1px_rgba(255,255,255,0.06),0_6px_24px_rgba(0,0,0,0.12)] overflow-hidden">
-                <div className="absolute -bottom-4 -right-4 w-16 h-16 bg-rose-500/8 blur-2xl rounded-full" />
+              <div className="relative backdrop-blur-2xl bg-gradient-to-br from-pink-500/[0.07] via-rose-500/[0.05] to-white/[0.02] rounded-2xl p-4 border border-pink-400/[0.1] shadow-[inset_0_1px_1px_rgba(255,255,255,0.08),0_6px_24px_rgba(0,0,0,0.12)] overflow-hidden">
+                <div className="absolute -bottom-4 -right-4 w-20 h-20 bg-rose-500/[0.1] blur-[30px] rounded-full" />
+                <div className="absolute top-0 left-0 w-16 h-16 bg-pink-400/[0.06] blur-[25px] rounded-full" />
                 <div className="relative flex items-center gap-2 mb-2">
-                  <Lock className="w-5 h-5 text-pink-400" />
+                  <div className="w-8 h-8 rounded-lg bg-pink-500/15 border border-pink-400/20 flex items-center justify-center shadow-[0_0_10px_rgba(236,72,153,0.12)]">
+                    <Lock className="w-4 h-4 text-pink-400" />
+                  </div>
                   <span className="text-lg font-bold text-foreground">Lockr</span>
                 </div>
                 <p className="relative text-xs text-pink-400/70 mb-3">5 Key Refills Remaining</p>
@@ -199,10 +224,13 @@ export function UserSidebar({ isOpen, onClose }: UserSidebarProps) {
               </div>
 
               {/* Rewards */}
-              <div className="relative backdrop-blur-2xl bg-gradient-to-br from-pink-500/[0.06] to-fuchsia-500/[0.04] rounded-2xl p-4 border border-white/[0.08] shadow-[inset_0_1px_1px_rgba(255,255,255,0.06),0_6px_24px_rgba(0,0,0,0.12)] overflow-hidden">
-                <div className="absolute -top-4 left-1/2 w-16 h-16 bg-fuchsia-500/8 blur-2xl rounded-full" />
+              <div className="relative backdrop-blur-2xl bg-gradient-to-br from-fuchsia-500/[0.08] via-pink-500/[0.05] to-white/[0.02] rounded-2xl p-4 border border-pink-400/[0.1] shadow-[inset_0_1px_1px_rgba(255,255,255,0.08),0_6px_24px_rgba(0,0,0,0.12)] overflow-hidden">
+                <div className="absolute -top-4 left-1/2 w-20 h-20 bg-fuchsia-500/[0.1] blur-[30px] rounded-full" />
+                <div className="absolute bottom-0 left-0 w-16 h-16 bg-pink-400/[0.06] blur-[25px] rounded-full" />
                 <div className="relative flex items-center gap-2 mb-2">
-                  <Gift className="w-5 h-5 text-pink-400" />
+                  <div className="w-8 h-8 rounded-lg bg-fuchsia-500/15 border border-fuchsia-400/20 flex items-center justify-center shadow-[0_0_10px_rgba(192,38,211,0.12)]">
+                    <Gift className="w-4 h-4 text-pink-400" />
+                  </div>
                   <span className="text-lg font-bold text-foreground">Rewards</span>
                 </div>
                 <p className="relative text-xs text-foreground/50 mb-3">Trade for keys</p>
@@ -214,7 +242,8 @@ export function UserSidebar({ isOpen, onClose }: UserSidebarProps) {
             </div>
 
             {/* Support Card */}
-            <div className="backdrop-blur-2xl bg-gradient-to-br from-white/[0.05] to-white/[0.02] rounded-2xl p-5 border border-white/[0.08] shadow-[inset_0_1px_1px_rgba(255,255,255,0.06),0_6px_24px_rgba(0,0,0,0.12)] mb-5">
+            <div className="relative backdrop-blur-2xl bg-gradient-to-br from-pink-500/[0.05] via-white/[0.04] to-white/[0.02] rounded-2xl p-5 border border-pink-400/[0.08] shadow-[inset_0_1px_1px_rgba(255,255,255,0.06),0_6px_24px_rgba(0,0,0,0.12)] mb-5 overflow-hidden">
+              <div className="absolute -top-6 left-1/2 w-32 h-20 bg-pink-500/[0.06] blur-[30px] rounded-full" />
               <h4 className="text-base font-semibold text-foreground mb-1">Support</h4>
               <p className="text-xs text-foreground/40 mb-4">
                 For any support related queries feel free to contact us below.
@@ -242,7 +271,8 @@ export function UserSidebar({ isOpen, onClose }: UserSidebarProps) {
             </div>
 
             {/* Service Availability */}
-            <div className="backdrop-blur-2xl bg-gradient-to-br from-white/[0.05] to-white/[0.02] rounded-2xl p-5 border border-white/[0.08] shadow-[inset_0_1px_1px_rgba(255,255,255,0.06),0_6px_24px_rgba(0,0,0,0.12)] mb-5">
+            <div className="relative backdrop-blur-2xl bg-gradient-to-br from-pink-500/[0.04] via-white/[0.04] to-white/[0.02] rounded-2xl p-5 border border-pink-400/[0.08] shadow-[inset_0_1px_1px_rgba(255,255,255,0.06),0_6px_24px_rgba(0,0,0,0.12)] mb-5 overflow-hidden">
+              <div className="absolute top-0 right-0 w-24 h-24 bg-green-500/[0.04] blur-[25px] rounded-full" />
               <div className="flex items-start justify-between">
                 <div className="flex items-center gap-3">
                   <div className="w-9 h-9 rounded-full bg-green-500/10 border border-green-500/15 flex items-center justify-center backdrop-blur-xl shadow-[0_0_12px_rgba(34,197,94,0.08)]">
@@ -264,7 +294,8 @@ export function UserSidebar({ isOpen, onClose }: UserSidebarProps) {
             </div>
 
             {/* Daily Content Chart */}
-            <div className="backdrop-blur-2xl bg-gradient-to-br from-white/[0.05] to-white/[0.02] rounded-2xl p-5 border border-white/[0.08] shadow-[inset_0_1px_1px_rgba(255,255,255,0.06),0_6px_24px_rgba(0,0,0,0.12)] mb-5">
+            <div className="relative backdrop-blur-2xl bg-gradient-to-br from-pink-500/[0.05] via-white/[0.04] to-rose-500/[0.03] rounded-2xl p-5 border border-pink-400/[0.08] shadow-[inset_0_1px_1px_rgba(255,255,255,0.06),0_6px_24px_rgba(0,0,0,0.12)] mb-5 overflow-hidden">
+              <div className="absolute bottom-0 left-0 w-full h-24 bg-pink-500/[0.04] blur-[30px] rounded-full" />
               <h4 className="text-base font-bold text-foreground">Daily Content</h4>
               <p className="text-xs text-foreground/40 mb-4">images and videos uploaded daily</p>
 
