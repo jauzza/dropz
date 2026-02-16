@@ -5,18 +5,22 @@ import { useState } from "react"
 import { Mail, Eye, EyeOff } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { LiquidGlassHeader } from "@/components/liquid-glass-header"
-import { ParticleBackground } from "@/components/particle-background"
+import { EtheralShadow } from "@/components/ui/etheral-shadow"
 
 export default function SignInPage() {
   const [showPassword, setShowPassword] = useState(false)
 
   return (
     <main className="min-h-screen bg-background relative overflow-hidden">
-      {/* Particle dust effect */}
-      <ParticleBackground />
-
-      {/* Radial pink glow — right half */}
-      <div className="absolute top-0 right-0 w-1/2 h-full bg-[radial-gradient(ellipse_at_60%_50%,hsl(330,80%,25%)_0%,transparent_70%)] opacity-40 pointer-events-none" />
+      {/* Animated pink dust particle background */}
+      <div className="absolute inset-0 pointer-events-none">
+        <EtheralShadow
+          color="rgba(200, 50, 120, 1)"
+          animation={{ scale: 100, speed: 90 }}
+          noise={{ opacity: 1, scale: 1.2 }}
+          sizing="fill"
+        />
+      </div>
 
       <LiquidGlassHeader />
 
