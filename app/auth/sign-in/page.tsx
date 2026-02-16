@@ -15,9 +15,9 @@ export default function SignInPage() {
       {/* Animated pink dust particle background */}
       <div className="absolute inset-0 pointer-events-none">
         <EtheralShadow
-          color="rgba(200, 50, 120, 1)"
-          animation={{ scale: 100, speed: 90 }}
-          noise={{ opacity: 1, scale: 1.2 }}
+          color="rgba(180, 40, 100, 0.35)"
+          animation={{ scale: 40, speed: 30 }}
+          noise={{ opacity: 0.3, scale: 1.4 }}
           sizing="fill"
         />
       </div>
