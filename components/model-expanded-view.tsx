@@ -1,6 +1,7 @@
 "use client"
 
 import { useRef, useEffect } from "react"
+import { useRouter } from "next/navigation"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import {
@@ -89,6 +90,7 @@ export function ModelExpandedView({
   onClose,
 }: ModelExpandedViewProps) {
   const scrollRef = useRef<HTMLDivElement>(null)
+  const router = useRouter()
 
   useEffect(() => {
     const handleEsc = (e: KeyboardEvent) => {
@@ -147,6 +149,10 @@ export function ModelExpandedView({
               <Button
                 size="sm"
                 className="bg-white/[0.05] text-foreground hover:bg-white/[0.1] border border-white/[0.08] text-xs h-9 font-medium"
+                onClick={() => {
+                  onClose()
+                  router.push(`/model/${encodeURIComponent(model.name)}`)
+                }}
               >
                 <BookOpen className="w-3.5 h-3.5 mr-1.5" />
                 Open Creator
