@@ -5,10 +5,12 @@ import { useState } from "react"
 import { Mail, Eye, EyeOff } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { LiquidGlassHeader } from "@/components/liquid-glass-header"
+import { UserSidebar } from "@/components/user-sidebar"
 import { EtheralShadow } from "@/components/ui/etheral-shadow"
 
 export default function SignUpPage() {
   const [showPassword, setShowPassword] = useState(false)
+  const [sidebarOpen, setSidebarOpen] = useState(false)
 
   return (
     <main className="min-h-screen bg-background relative overflow-hidden">
@@ -22,7 +24,8 @@ export default function SignUpPage() {
         />
       </div>
 
-      <LiquidGlassHeader />
+      <LiquidGlassHeader onUserClick={() => setSidebarOpen(true)} />
+      <UserSidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
 
       <div className="relative z-10 flex items-center justify-center min-h-screen pt-16 px-4">
         <div className="w-full max-w-md">

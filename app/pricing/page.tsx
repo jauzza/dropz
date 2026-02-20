@@ -3,6 +3,7 @@
 import { useState } from "react"
 import { useRouter } from "next/navigation"
 import { LiquidGlassHeader } from "@/components/liquid-glass-header"
+import { UserSidebar } from "@/components/user-sidebar"
 import { Button } from "@/components/ui/button"
 import { Key, Crown, Zap, Infinity, Check, ArrowLeft, ShieldCheck, Ban } from "lucide-react"
 
@@ -65,10 +66,12 @@ const plans = [
 export default function PricingPage() {
   const router = useRouter()
   const [selectedPlan, setSelectedPlan] = useState<string | null>(null)
+  const [sidebarOpen, setSidebarOpen] = useState(false)
 
   return (
     <main className="min-h-screen bg-background">
-      <LiquidGlassHeader />
+      <LiquidGlassHeader onUserClick={() => setSidebarOpen(true)} />
+      <UserSidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
 
       <div className="pt-24 pb-16 px-4 md:px-6 lg:px-8 max-w-6xl mx-auto">
         {/* Back button */}
