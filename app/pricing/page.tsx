@@ -73,32 +73,32 @@ export default function PricingPage() {
       <LiquidGlassHeader onUserClick={() => setSidebarOpen(true)} />
       <UserSidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
 
-      <div className="pt-24 pb-16 px-4 md:px-6 lg:px-8 max-w-6xl mx-auto">
+      <div className="pt-18 sm:pt-24 pb-16 px-3 sm:px-4 md:px-6 lg:px-8 max-w-6xl mx-auto">
         {/* Back button */}
         <button
           onClick={() => router.back()}
-          className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors mb-10"
+          className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors mb-6 sm:mb-10"
         >
           <ArrowLeft className="w-4 h-4" />
           Back
         </button>
 
         {/* Header */}
-        <div className="text-center mb-12">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brand-500/10 border border-brand-500/20 text-brand-300 text-xs font-medium mb-5">
+        <div className="text-center mb-8 sm:mb-12">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brand-500/10 border border-brand-500/20 text-brand-300 text-xs font-medium mb-4 sm:mb-5">
             <Crown className="w-3.5 h-3.5" />
             Premium Plans
           </div>
-          <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4 text-balance">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-3 sm:mb-4 text-balance">
             Unlock more with Premium
           </h1>
-          <p className="text-muted-foreground text-base md:text-lg max-w-xl mx-auto text-pretty">
+          <p className="text-muted-foreground text-sm sm:text-base md:text-lg max-w-xl mx-auto text-pretty">
             Get more keys, faster downloads, and an ad-free experience. Choose the plan that fits your needs.
           </p>
         </div>
 
         {/* Pricing Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-5 mb-12 sm:mb-16">
           {plans.map((plan) => {
             const Icon = plan.icon
             const isSelected = selectedPlan === plan.id

@@ -27,10 +27,10 @@ export default function SignInPage() {
       <LiquidGlassHeader onUserClick={() => setSidebarOpen(true)} />
       <UserSidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
 
-      <div className="relative z-10 flex items-center justify-center min-h-screen pt-16 px-4">
+      <div className="relative z-10 flex items-center justify-center min-h-screen pt-14 sm:pt-16 px-3 sm:px-4">
         <div className="w-full max-w-md">
           {/* Card */}
-          <div className="backdrop-blur-2xl bg-card/80 border border-white/[0.08] rounded-2xl p-8 shadow-[0_8px_40px_rgba(0,0,0,0.3),inset_0_1px_0_rgba(255,255,255,0.06)]">
+          <div className="backdrop-blur-2xl bg-card/80 border border-white/[0.08] rounded-xl sm:rounded-2xl p-5 sm:p-8 shadow-[0_8px_40px_rgba(0,0,0,0.3),inset_0_1px_0_rgba(255,255,255,0.06)]">
             {/* Title */}
             <h1 className="text-2xl font-bold text-foreground mb-2">Inloggen</h1>
             <p className="text-sm text-muted-foreground mb-6">
