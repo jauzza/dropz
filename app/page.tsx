@@ -134,7 +134,7 @@ export default function Home() {
       <div className="pt-16 sm:pt-20 px-3 sm:px-4 md:px-6 lg:px-8 max-w-7xl mx-auto">
         <SearchFilterBar />
 
-        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-4 mt-4 sm:mt-6 pb-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-4 mt-4 sm:mt-6 pb-4">
           {displayedModels.map((model, index) => (
             <ProductCard
               key={`${model.name}-${index}`}
