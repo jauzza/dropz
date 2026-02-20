@@ -82,30 +82,30 @@ export default function ModelProfilePage({
       <LiquidGlassHeader onUserClick={() => setSidebarOpen(true)} />
       <UserSidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
 
-      <div className="pt-20 px-4 md:px-6 lg:px-8 max-w-7xl mx-auto">
+      <div className="pt-16 sm:pt-20 px-3 sm:px-4 md:px-6 lg:px-8 max-w-7xl mx-auto">
         {/* Search bar (prefilled with model name) */}
         <SearchFilterBar />
 
         {/* ====== Profile Hero Section ====== */}
-        <section className="flex flex-col lg:flex-row gap-8 mt-4 mb-10">
+        <section className="flex flex-col lg:flex-row gap-6 lg:gap-8 mt-4 mb-10">
           {/* Left: Info */}
           <div className="flex-1 min-w-0">
             {/* Name row */}
-            <div className="flex items-center gap-3 mb-1">
-              <h1 className="text-3xl font-bold text-foreground text-balance">{decodedName}</h1>
-              <span className="text-xl flex-shrink-0" role="img" aria-label="flag">&#127482;&#127480;</span>
-              <span className="flex items-center gap-1 text-sm text-muted-foreground">
-                <Calendar className="w-3.5 h-3.5" />
+            <div className="flex flex-wrap items-center gap-2 sm:gap-3 mb-1">
+              <h1 className="text-2xl sm:text-3xl font-bold text-foreground text-balance">{decodedName}</h1>
+              <span className="text-lg sm:text-xl flex-shrink-0" role="img" aria-label="flag">&#127482;&#127480;</span>
+              <span className="flex items-center gap-1 text-xs sm:text-sm text-muted-foreground">
+                <Calendar className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
                 33 jaar oud
               </span>
-              <span className="flex items-center gap-1 text-sm text-muted-foreground">
-                <User2 className="w-3.5 h-3.5" />
+              <span className="flex items-center gap-1 text-xs sm:text-sm text-muted-foreground">
+                <User2 className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
                 Latina
               </span>
             </div>
 
             {/* Bio */}
-            <p className="text-sm text-muted-foreground leading-relaxed mt-4 max-w-2xl">
+            <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed mt-3 sm:mt-4 max-w-2xl">
               Miami-born Latina stunner {decodedName}, 33 with an athletic 32G enhanced figure at
               5{"'"}1{'"'}, rose from fitness modeling dreams post-high school to adult camgirl fame.
               Married to Joe Taranto since 2017, this gamer and influencer shares solo full nudity,
@@ -114,12 +114,12 @@ export default function ModelProfilePage({
             </p>
 
             {/* Ook bekend als */}
-            <div className="flex items-center flex-wrap gap-2 mt-5">
-              <span className="text-sm text-muted-foreground">Ook bekend als</span>
+            <div className="flex items-center flex-wrap gap-1.5 sm:gap-2 mt-4 sm:mt-5">
+              <span className="text-xs sm:text-sm text-muted-foreground">Ook bekend als</span>
               {aliases.map((alias) => (
                 <span
                   key={alias}
-                  className="text-sm text-foreground/80 hover:text-brand-300 cursor-pointer transition-colors"
+                  className="text-xs sm:text-sm text-foreground/80 hover:text-brand-300 cursor-pointer transition-colors"
                 >
                   {alias}
                 </span>
@@ -193,7 +193,7 @@ export default function ModelProfilePage({
           </div>
 
           {/* Right: Large profile image */}
-          <div className="flex-shrink-0 w-full lg:w-[300px] xl:w-[340px]">
+          <div className="flex-shrink-0 w-full max-w-[280px] mx-auto lg:mx-0 lg:w-[300px] xl:w-[340px]">
             <div className="relative aspect-[3/4] rounded-2xl overflow-hidden border border-white/[0.08] shadow-[0_8px_32px_rgba(0,0,0,0.2)]">
               <Image
                 src="/images/goy.png"
@@ -207,7 +207,7 @@ export default function ModelProfilePage({
 
         {/* ====== Uploads Grid ====== */}
         <section className="pb-12">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-4">
             {uploads.map((model, index) => (
               <ProductCard
                 key={`${model.name}-${index}`}
