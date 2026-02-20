@@ -2,28 +2,29 @@
 
 import { useState, useRef, useEffect } from "react"
 import { useRouter } from "next/navigation"
-import { User, ChevronDown, ShoppingCart } from "lucide-react"
+import { Lock, ChevronDown, User, Key } from "lucide-react"
+import Image from "next/image"
 
 const languages = [
-  { code: "en", label: "English", flag: "\uD83C\uDDEC\uD83C\uDDE7" },
-  { code: "nl", label: "Nederlands", flag: "\uD83C\uDDF3\uD83C\uDDF1" },
-  { code: "de", label: "Deutsch", flag: "\uD83C\uDDE9\uD83C\uDDEA" },
-  { code: "fr", label: "Fran\u00e7ais", flag: "\uD83C\uDDEB\uD83C\uDDF7" },
-  { code: "es", label: "Espa\u00f1ol", flag: "\uD83C\uDDEA\uD83C\uDDF8" },
-  { code: "pt", label: "Portugu\u00eas", flag: "\uD83C\uDDF5\uD83C\uDDF9" },
+  { code: "en", label: "English", flag: "https://flagcdn.com/w40/gb.png", short: "EN" },
+  { code: "nl", label: "Nederlands", flag: "https://flagcdn.com/w40/nl.png", short: "NL" },
+  { code: "de", label: "Deutsch", flag: "https://flagcdn.com/w40/de.png", short: "DE" },
+  { code: "fr", label: "Fran\u00e7ais", flag: "https://flagcdn.com/w40/fr.png", short: "FR" },
+  { code: "es", label: "Espa\u00f1ol", flag: "https://flagcdn.com/w40/es.png", short: "ES" },
+  { code: "pt", label: "Portugu\u00eas", flag: "https://flagcdn.com/w40/pt.png", short: "PT" },
 ]
 
 interface LiquidGlassHeaderProps {
   onUserClick?: () => void
+  remainingKeys?: number
 }
 
-export function LiquidGlassHeader({ onUserClick }: LiquidGlassHeaderProps) {
+export function LiquidGlassHeader({ onUserClick, remainingKeys = 5 }: LiquidGlassHeaderProps) {
   const router = useRouter()
   const [langOpen, setLangOpen] = useState(false)
   const [selectedLang, setSelectedLang] = useState(languages[0])
   const langRef = useRef<HTMLDivElement>(null)
 
-  /* Close dropdown on outside click */
   useEffect(() => {
     function handleClick(e: MouseEvent) {
       if (langRef.current && !langRef.current.contains(e.target as Node)) {
@@ -37,12 +38,13 @@ export function LiquidGlassHeader({ onUserClick }: LiquidGlassHeaderProps) {
   return (
     <header className="fixed top-0 left-0 right-0 z-50">
       {/* Glass backdrop */}
-      <div className="absolute inset-0 bg-background/70 backdrop-blur-2xl border-b border-white/[0.06] shadow-[0_4px_24px_rgba(0,0,0,0.18)]" />
+      <div className="absolute inset-0 bg-background/60 backdrop-blur-2xl border-b border-white/[0.06] shadow-[0_1px_12px_rgba(0,0,0,0.2)]" />
 
       <div className="relative max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-14 sm:h-16">
-          {/* ---- Left: Logo + Buy Access ---- */}
-          <div className="flex items-center gap-2 sm:gap-3">
+
+          {/* ---- Left: Logo + Get Access ---- */}
+          <div className="flex items-center gap-2.5 sm:gap-3">
             {/* Logo */}
             <button
               onClick={() => router.push("/")}
@@ -56,32 +58,40 @@ export function LiquidGlassHeader({ onUserClick }: LiquidGlassHeaderProps) {
               <span className="text-base sm:text-lg font-bold text-foreground hidden sm:block">PimpDrops</span>
             </button>
 
-            {/* Buy Access CTA */}
+            {/* Get Access CTA — frosted glass pink */}
             <button
               onClick={() => router.push("/pricing")}
-              className="flex items-center gap-1.5 h-9 px-3 sm:px-4 rounded-lg bg-brand-500 hover:bg-brand-600 text-white text-xs sm:text-sm font-semibold transition-colors shadow-[0_0_16px_var(--brand-500)/0.2]"
+              className="flex items-center gap-1.5 h-9 sm:h-10 px-3.5 sm:px-5 rounded-xl bg-brand-500/[0.12] hover:bg-brand-500/[0.22] backdrop-blur-xl border border-brand-400/20 text-brand-300 text-xs sm:text-sm font-semibold transition-all shadow-[0_0_20px_hsl(330,80%,55%,0.08),inset_0_1px_0_rgba(255,255,255,0.06)] active:scale-[0.97]"
             >
-              <ShoppingCart className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
-              <span className="hidden xs:inline">Buy</span> Access
+              <Lock className="w-3.5 h-3.5 sm:w-4 sm:h-4 flex-shrink-0" />
+              <span className="whitespace-nowrap">Get Access</span>
             </button>
           </div>
 
-          {/* ---- Right: Language + User ---- */}
-          <div className="flex items-center gap-2 sm:gap-3">
-            {/* Language Selector */}
+          {/* ---- Right: Language + User pill ---- */}
+          <div className="flex items-center gap-2 sm:gap-2.5">
+
+            {/* Language selector with real flags */}
             <div ref={langRef} className="relative">
               <button
                 onClick={() => setLangOpen(!langOpen)}
-                className="flex items-center gap-1.5 h-9 px-2.5 sm:px-3 rounded-lg bg-white/[0.04] hover:bg-white/[0.08] border border-white/[0.08] text-foreground/80 text-xs sm:text-sm font-medium transition-colors"
+                className="flex items-center gap-1.5 h-9 sm:h-10 px-2 sm:px-3 rounded-xl bg-white/[0.04] hover:bg-white/[0.08] border border-white/[0.08] text-foreground/80 text-xs sm:text-sm font-medium transition-colors backdrop-blur-xl"
               >
-                <span className="text-base leading-none">{selectedLang.flag}</span>
+                <Image
+                  src={selectedLang.flag}
+                  alt={selectedLang.label}
+                  width={20}
+                  height={15}
+                  className="rounded-[2px] object-cover flex-shrink-0"
+                  unoptimized
+                />
                 <span className="hidden sm:inline">{selectedLang.label}</span>
-                <ChevronDown className={`w-3.5 h-3.5 text-muted-foreground transition-transform ${langOpen ? "rotate-180" : ""}`} />
+                <span className="sm:hidden text-[11px] font-medium text-muted-foreground">{selectedLang.short}</span>
+                <ChevronDown className={`w-3 h-3 sm:w-3.5 sm:h-3.5 text-muted-foreground transition-transform ${langOpen ? "rotate-180" : ""}`} />
               </button>
 
-              {/* Dropdown */}
               {langOpen && (
-                <div className="absolute right-0 top-full mt-1.5 w-44 rounded-xl bg-card/95 backdrop-blur-2xl border border-white/[0.1] shadow-[0_12px_40px_rgba(0,0,0,0.35)] py-1.5 z-50">
+                <div className="absolute right-0 top-full mt-1.5 w-48 rounded-xl bg-card/95 backdrop-blur-2xl border border-white/[0.1] shadow-[0_12px_40px_rgba(0,0,0,0.4)] py-1.5 z-50 overflow-hidden">
                   {languages.map((lang) => (
                     <button
                       key={lang.code}
@@ -89,13 +99,20 @@ export function LiquidGlassHeader({ onUserClick }: LiquidGlassHeaderProps) {
                         setSelectedLang(lang)
                         setLangOpen(false)
                       }}
-                      className={`w-full flex items-center gap-2.5 px-3.5 py-2 text-sm transition-colors ${
+                      className={`w-full flex items-center gap-2.5 px-3.5 py-2.5 text-sm transition-colors ${
                         selectedLang.code === lang.code
                           ? "text-brand-300 bg-brand-500/10"
                           : "text-foreground/80 hover:bg-white/[0.06]"
                       }`}
                     >
-                      <span className="text-base leading-none">{lang.flag}</span>
+                      <Image
+                        src={lang.flag}
+                        alt={lang.label}
+                        width={22}
+                        height={16}
+                        className="rounded-[2px] object-cover flex-shrink-0"
+                        unoptimized
+                      />
                       <span>{lang.label}</span>
                     </button>
                   ))}
@@ -103,14 +120,21 @@ export function LiquidGlassHeader({ onUserClick }: LiquidGlassHeaderProps) {
               )}
             </div>
 
-            {/* User Icon */}
+            {/* User pill — icon + keys remaining */}
             <button
               onClick={() => onUserClick?.()}
-              className="flex items-center justify-center w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-brand-500/10 border border-brand-400/20 text-brand-300 hover:bg-brand-500/20 hover:text-brand-200 transition-colors cursor-pointer"
+              className="flex items-center gap-1.5 sm:gap-2 h-9 sm:h-10 pl-2.5 pr-3 sm:pl-3 sm:pr-3.5 rounded-xl bg-white/[0.04] hover:bg-white/[0.08] border border-white/[0.08] text-foreground/80 transition-colors backdrop-blur-xl cursor-pointer"
               aria-label="User menu"
             >
-              <User className="w-4.5 h-4.5 sm:w-5 sm:h-5" />
+              <div className="w-6 h-6 sm:w-7 sm:h-7 rounded-lg bg-brand-500/15 border border-brand-400/20 flex items-center justify-center flex-shrink-0">
+                <User className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-brand-300" />
+              </div>
+              <div className="flex items-center gap-1 text-[11px] sm:text-xs font-medium text-muted-foreground whitespace-nowrap">
+                <Key className="w-3 h-3 text-brand-400 flex-shrink-0" />
+                <span><span className="text-brand-300 font-semibold">{remainingKeys}</span> keys</span>
+              </div>
             </button>
+
           </div>
         </div>
       </div>
