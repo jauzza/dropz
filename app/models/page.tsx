@@ -89,19 +89,27 @@ function FilterDropdown({
   const display = value === "All" || value === "all" ? label : value
 
   return (
-    <div ref={ref} className="relative">
+    <div ref={ref} className="relative z-30">
       <button
         onClick={() => setOpen(!open)}
-        className="flex items-center gap-1.5 h-10 px-3.5 rounded-xl bg-white/[0.04] hover:bg-white/[0.08] backdrop-blur-xl border border-white/[0.08] text-foreground/70 text-sm font-medium transition-all shadow-[inset_0_1px_0_rgba(255,255,255,0.04)] whitespace-nowrap"
+        className={`flex items-center gap-2 h-9 px-4 rounded-full text-sm font-medium transition-all whitespace-nowrap
+          ${
+            open
+              ? "bg-white/[0.12] border border-white/[0.15] text-foreground shadow-[0_0_12px_rgba(255,255,255,0.04)]"
+              : value !== "All" && value !== "all" && value !== label
+                ? "bg-brand-500/[0.1] border border-brand-400/[0.2] text-brand-300"
+                : "bg-white/[0.06] border border-white/[0.08] text-foreground/60 hover:bg-white/[0.1] hover:text-foreground/80 hover:border-white/[0.12]"
+          }`}
       >
         {display}
-        <ChevronDown className={`w-3.5 h-3.5 text-muted-foreground transition-transform ${open ? "rotate-180" : ""}`} />
+        <ChevronDown className={`w-3 h-3 opacity-50 transition-transform ${open ? "rotate-180" : ""}`} />
       </button>
 
       {open && (
-        <div className="absolute left-0 top-full mt-1.5 min-w-[160px] rounded-xl overflow-hidden border border-white/[0.1] shadow-[0_12px_40px_rgba(0,0,0,0.5)] z-50">
-          <div className="absolute inset-0 bg-gradient-to-br from-brand-500/[0.08] via-background/95 to-background backdrop-blur-3xl" />
-          <div className="absolute inset-0 bg-gradient-to-b from-white/[0.04] to-transparent pointer-events-none" />
+        <div className="absolute left-0 top-full mt-2 min-w-[180px] rounded-2xl overflow-hidden border border-white/[0.1] shadow-[0_16px_48px_rgba(0,0,0,0.6),0_0_0_1px_rgba(255,255,255,0.03)] z-[100]">
+          <div className="absolute inset-0 bg-background/95 backdrop-blur-3xl" />
+          <div className="absolute inset-0 bg-gradient-to-b from-white/[0.05] via-transparent to-transparent pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-br from-brand-500/[0.04] to-transparent pointer-events-none" />
           <div className="relative py-1.5">
             {options.map((opt) => {
               const isActive = value === opt
@@ -112,14 +120,14 @@ function FilterDropdown({
                     onChange(opt)
                     setOpen(false)
                   }}
-                  className={`w-full flex items-center gap-3 px-4 py-2.5 text-sm transition-colors ${
+                  className={`w-full flex items-center gap-3 px-4 py-2 text-sm transition-colors ${
                     isActive
                       ? "text-brand-300 bg-brand-500/10"
-                      : "text-foreground/80 hover:bg-white/[0.06]"
+                      : "text-foreground/70 hover:bg-white/[0.06] hover:text-foreground/90"
                   }`}
                 >
                   <span className="flex-1 text-left">{opt}</span>
-                  {isActive && <Check className="w-4 h-4 text-brand-300 flex-shrink-0" />}
+                  {isActive && <Check className="w-3.5 h-3.5 text-brand-300 flex-shrink-0" />}
                 </button>
               )
             })}
@@ -203,44 +211,50 @@ export default function ModelsPage() {
         </div>
 
         {/* ─── Filter Bar ─── */}
-        <div className="flex items-center gap-2 pb-4 sm:pb-6 overflow-x-auto scrollbar-thin">
+        <div className="relative z-20 flex items-center gap-2.5 pb-5 sm:pb-7 overflow-x-auto scrollbar-thin">
+          {/* Filter pills */}
           <FilterDropdown label="Body Type" options={bodyTypes} value={bodyType} onChange={setBodyType} />
           <FilterDropdown label="Cup Size" options={cupSizes} value={cupSize} onChange={setCupSize} />
           <FilterDropdown label="Ethnicity" options={ethnicities} value={ethnicity} onChange={setEthnicity} />
           <FilterDropdown
-            label="Select country"
+            label="All Countries"
             options={countries.map((c) => c.label)}
             value={country}
             onChange={setCountry}
           />
 
           {/* Tag filter input */}
-          <div className="relative flex-shrink-0 min-w-[160px]">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-muted-foreground pointer-events-none" />
+          <div className="relative flex-shrink-0 min-w-[170px] sm:min-w-[200px]">
             <input
               type="text"
               placeholder="Filter by tags"
               value={tagFilter}
               onChange={(e) => setTagFilter(e.target.value)}
-              className="w-full h-10 pl-9 pr-3 bg-white/[0.04] backdrop-blur-xl border border-white/[0.08] rounded-xl text-foreground placeholder:text-muted-foreground text-sm outline-none focus:border-brand-400/30 focus:ring-1 focus:ring-brand-400/20 transition-all shadow-[inset_0_1px_0_rgba(255,255,255,0.04)]"
+              className="w-full h-9 px-4 bg-white/[0.04] border border-white/[0.08] rounded-full text-foreground/80 placeholder:text-foreground/30 text-sm outline-none focus:bg-white/[0.08] focus:border-white/[0.15] focus:text-foreground transition-all"
             />
           </div>
 
-          {/* Sort dropdown */}
-          <div className="relative flex-shrink-0 ml-auto" ref={sortRef}>
+          {/* Sort dropdown — pushed right */}
+          <div className="relative z-30 flex-shrink-0 ml-auto" ref={sortRef}>
             <button
               onClick={() => setSortOpen(!sortOpen)}
-              className="flex items-center gap-1.5 h-10 px-4 rounded-xl bg-brand-500/[0.08] hover:bg-brand-500/[0.15] backdrop-blur-xl border border-brand-400/[0.15] text-brand-300 text-sm font-semibold transition-all shadow-[inset_0_1px_0_rgba(255,255,255,0.04)] whitespace-nowrap"
+              className={`flex items-center gap-2 h-9 px-4 rounded-full text-sm font-semibold transition-all whitespace-nowrap
+                ${
+                  sortOpen
+                    ? "bg-brand-500/[0.15] border border-brand-400/[0.25] text-brand-300 shadow-[0_0_16px_rgba(var(--brand-hue),0.1)]"
+                    : "bg-brand-500/[0.08] border border-brand-400/[0.15] text-brand-300 hover:bg-brand-500/[0.14] hover:border-brand-400/[0.2]"
+                }`}
             >
-              <CurrentSortIcon className="w-4 h-4" />
+              <CurrentSortIcon className="w-3.5 h-3.5" />
               {currentSort.label}
-              <ChevronDown className={`w-3.5 h-3.5 transition-transform ${sortOpen ? "rotate-180" : ""}`} />
+              <ChevronDown className={`w-3 h-3 opacity-60 transition-transform ${sortOpen ? "rotate-180" : ""}`} />
             </button>
 
             {sortOpen && (
-              <div className="absolute right-0 top-full mt-1.5 w-52 rounded-xl overflow-hidden border border-white/[0.1] shadow-[0_12px_40px_rgba(0,0,0,0.5)] z-50">
-                <div className="absolute inset-0 bg-gradient-to-br from-brand-500/[0.08] via-background/95 to-background backdrop-blur-3xl" />
-                <div className="absolute inset-0 bg-gradient-to-b from-white/[0.04] to-transparent pointer-events-none" />
+              <div className="absolute right-0 top-full mt-2 w-52 rounded-2xl overflow-hidden border border-white/[0.1] shadow-[0_16px_48px_rgba(0,0,0,0.6),0_0_0_1px_rgba(255,255,255,0.03)] z-[100]">
+                <div className="absolute inset-0 bg-background/95 backdrop-blur-3xl" />
+                <div className="absolute inset-0 bg-gradient-to-b from-white/[0.05] via-transparent to-transparent pointer-events-none" />
+                <div className="absolute inset-0 bg-gradient-to-br from-brand-500/[0.04] to-transparent pointer-events-none" />
                 <div className="relative py-1.5">
                   {sortOptions.map((option) => {
                     const Icon = option.icon
@@ -252,10 +266,10 @@ export default function ModelsPage() {
                           setSelectedSort(option.id)
                           setSortOpen(false)
                         }}
-                        className={`w-full flex items-center gap-3 px-4 py-2.5 text-sm transition-colors ${
+                        className={`w-full flex items-center gap-3 px-4 py-2 text-sm transition-colors ${
                           isActive
                             ? "text-brand-300 bg-brand-500/10"
-                            : "text-foreground/80 hover:bg-white/[0.06]"
+                            : "text-foreground/70 hover:bg-white/[0.06] hover:text-foreground/90"
                         }`}
                       >
                         <Icon className="w-4 h-4 flex-shrink-0" />
@@ -265,7 +279,7 @@ export default function ModelsPage() {
                             {option.badge}
                           </span>
                         )}
-                        {isActive && <Check className="w-4 h-4 text-brand-300 flex-shrink-0" />}
+                        {isActive && <Check className="w-3.5 h-3.5 text-brand-300 flex-shrink-0" />}
                       </button>
                     )
                   })}
@@ -276,7 +290,7 @@ export default function ModelsPage() {
         </div>
 
         {/* ─── Model Grid ─── */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-4 pb-4">
+        <div className="relative z-0 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-4 pb-4">
           {displayedModels.map((model, index) => (
             <BrowseModelCard
               key={`${model.name}-${index}`}
