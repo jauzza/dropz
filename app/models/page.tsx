@@ -55,18 +55,18 @@ const countries = [
 
 /* ─── Model data ─── */
 const allModels: BrowseModelData[] = [
-  { name: "Sophie Rain", ethnicity: "Asian", age: 24, country: "United States", flag: "\u{1F1FA}\u{1F1F8}", imageSrc: "/images/goy.png" },
-  { name: "Kira Pregiato", ethnicity: "White", age: 21, country: "United States", flag: "\u{1F1FA}\u{1F1F8}", imageSrc: "/images/goy.png" },
-  { name: "Layla Dream", ethnicity: "White", age: 21, country: "United Kingdom", flag: "\u{1F1EC}\u{1F1E7}", imageSrc: "/images/goy.png" },
-  { name: "Bbyanni", ethnicity: "Asian", age: 22, country: "Mexico", flag: "\u{1F1F2}\u{1F1FD}", imageSrc: "/images/goy.png" },
-  { name: "Cece Rose", ethnicity: "White", age: 27, country: "Mexico", flag: "\u{1F1F2}\u{1F1FD}", imageSrc: "/images/goy.png" },
-  { name: "Lara Rose", ethnicity: "White", age: 27, country: "United Kingdom", flag: "\u{1F1EC}\u{1F1E7}", imageSrc: "/images/goy.png" },
-  { name: "Waifumiia", ethnicity: "Asian", age: 22, country: "Canada", flag: "\u{1F1E8}\u{1F1E6}", imageSrc: "/images/goy.png" },
-  { name: "Breckie Hill", ethnicity: "White", age: 23, country: "United States", flag: "\u{1F1FA}\u{1F1F8}", imageSrc: "/images/goy.png" },
-  { name: "Yardenlasry", ethnicity: "White", age: 25, country: "United States", flag: "\u{1F1FA}\u{1F1F8}", imageSrc: "/images/goy.png" },
-  { name: "Xinia Official", ethnicity: "Latina", age: 26, country: "Brazil", flag: "\u{1F1E7}\u{1F1F7}", imageSrc: "/images/goy.png" },
-  { name: "Mythiccal", ethnicity: "White", age: 24, country: "United States", flag: "\u{1F1FA}\u{1F1F8}", imageSrc: "/images/goy.png" },
-  { name: "TitaSahara", ethnicity: "Arab", age: 28, country: "United States", flag: "\u{1F1FA}\u{1F1F8}", imageSrc: "/images/goy.png" },
+  { name: "Sophie Rain", ethnicity: "Asian", age: 24, country: "United States", flag: "https://flagcdn.com/w40/us.png", imageSrc: "/images/goy.png" },
+  { name: "Kira Pregiato", ethnicity: "White", age: 21, country: "United States", flag: "https://flagcdn.com/w40/us.png", imageSrc: "/images/goy.png" },
+  { name: "Layla Dream", ethnicity: "White", age: 21, country: "United Kingdom", flag: "https://flagcdn.com/w40/gb.png", imageSrc: "/images/goy.png" },
+  { name: "Bbyanni", ethnicity: "Asian", age: 22, country: "Mexico", flag: "https://flagcdn.com/w40/mx.png", imageSrc: "/images/goy.png" },
+  { name: "Cece Rose", ethnicity: "White", age: 27, country: "Mexico", flag: "https://flagcdn.com/w40/mx.png", imageSrc: "/images/goy.png" },
+  { name: "Lara Rose", ethnicity: "White", age: 27, country: "United Kingdom", flag: "https://flagcdn.com/w40/gb.png", imageSrc: "/images/goy.png" },
+  { name: "Waifumiia", ethnicity: "Asian", age: 22, country: "Canada", flag: "https://flagcdn.com/w40/ca.png", imageSrc: "/images/goy.png" },
+  { name: "Breckie Hill", ethnicity: "White", age: 23, country: "United States", flag: "https://flagcdn.com/w40/us.png", imageSrc: "/images/goy.png" },
+  { name: "Yardenlasry", ethnicity: "White", age: 25, country: "United States", flag: "https://flagcdn.com/w40/us.png", imageSrc: "/images/goy.png" },
+  { name: "Xinia Official", ethnicity: "Latina", age: 26, country: "Brazil", flag: "https://flagcdn.com/w40/br.png", imageSrc: "/images/goy.png" },
+  { name: "Mythiccal", ethnicity: "White", age: 24, country: "United States", flag: "https://flagcdn.com/w40/us.png", imageSrc: "/images/goy.png" },
+  { name: "TitaSahara", ethnicity: "Arab", age: 28, country: "United States", flag: "https://flagcdn.com/w40/us.png", imageSrc: "/images/goy.png" },
 ]
 
 /* ─── Dropdown component ─── */

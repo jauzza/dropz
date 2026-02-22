@@ -55,9 +55,13 @@ export function BrowseModelCard({
             <h3 className="text-sm sm:text-base font-semibold text-foreground tracking-tight truncate">
               {name}
             </h3>
-            <span className="text-base sm:text-lg flex-shrink-0" role="img" aria-label={`${country} flag`}>
-              {flag}
-            </span>
+            {flag && (
+              <img
+                src={flag}
+                alt={`${country} flag`}
+                className="w-5 h-3.5 object-cover rounded-[2px] flex-shrink-0"
+              />
+            )}
           </div>
 
           {/* Ethnicity + Age */}
