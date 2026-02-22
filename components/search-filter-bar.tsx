@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useRef, useEffect, useCallback } from "react"
+import { useRouter } from "next/navigation"
 import {
   Search,
   Camera,
@@ -57,6 +58,7 @@ const ethnicities = [
 ]
 
 export function SearchFilterBar() {
+  const router = useRouter()
   const [searchOpen, setSearchOpen] = useState(false)
   const [sortOpen, setSortOpen] = useState(false)
   const [selectedSort, setSelectedSort] = useState("new")
@@ -234,7 +236,13 @@ export function SearchFilterBar() {
                   <Camera className="w-4 h-4 mr-2" />
                   Visual Image Search
                 </Button>
-                <Button className="h-12 bg-white/[0.04] hover:bg-white/[0.08] text-foreground/70 border border-white/[0.08] backdrop-blur-xl font-medium text-sm shadow-[inset_0_1px_0_rgba(255,255,255,0.04)] rounded-xl">
+                <Button
+                  className="h-12 bg-white/[0.04] hover:bg-white/[0.08] text-foreground/70 border border-white/[0.08] backdrop-blur-xl font-medium text-sm shadow-[inset_0_1px_0_rgba(255,255,255,0.04)] rounded-xl"
+                  onClick={() => {
+                    setSearchOpen(false)
+                    router.push("/models")
+                  }}
+                >
                   <LayoutGrid className="w-4 h-4 mr-2" />
                   Browse all models
                 </Button>
@@ -303,6 +311,7 @@ export function SearchFilterBar() {
         <Button
           variant="outline"
           className="bg-transparent border-white/[0.08] hover:bg-white/[0.06] text-foreground/70 h-10 px-3 sm:px-4 rounded-xl text-sm"
+          onClick={() => router.push("/models")}
         >
           <LayoutGrid className="w-4 h-4 mr-1.5" />
           <span className="hidden xs:inline">Models</span>
