@@ -228,6 +228,17 @@ export function ModelExpandedView({
                     <Button
                       size="sm"
                       className="w-full bg-brand-500/15 text-brand-300 hover:bg-brand-500/25 border border-brand-500/25 text-[10px] sm:text-xs h-7 sm:h-8 font-medium"
+                      onClick={() => {
+                        const params = new URLSearchParams({
+                          size: model.size,
+                          downloads: String(model.downloads),
+                          files: String(model.files),
+                          timeAgo: model.timeAgo,
+                          imageSrc: model.imageSrc,
+                          verified: String(model.isVerified),
+                        })
+                        router.push(`/redirect/${encodeURIComponent(model.name)}?${params.toString()}`)
+                      }}
                     >
                       <ExternalLink className="w-3 h-3 sm:w-3.5 sm:h-3.5 mr-1 sm:mr-1.5" />
                       Open Link

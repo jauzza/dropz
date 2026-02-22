@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react"
+import { useRouter } from "next/navigation"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import {
@@ -38,6 +39,19 @@ export function ProductCard({
   onMoreClick,
 }: ProductCardProps) {
   const [isHovered, setIsHovered] = useState(false)
+  const router = useRouter()
+
+  const handleOpenLink = () => {
+    const params = new URLSearchParams({
+      size,
+      downloads: String(downloads),
+      files: String(files),
+      timeAgo,
+      imageSrc,
+      verified: String(isVerified),
+    })
+    router.push(`/redirect/${encodeURIComponent(name)}?${params.toString()}`)
+  }
 
   return (
     <div
@@ -100,6 +114,10 @@ export function ProductCard({
             <Button
               size="sm"
               className="flex-1 bg-brand-500/10 text-brand-400 hover:bg-brand-500/20 border border-brand-500/20 text-[10px] sm:text-xs h-7 sm:h-8 font-medium px-2 sm:px-3"
+              onClick={(e) => {
+                e.stopPropagation()
+                handleOpenLink()
+              }}
             >
               <ExternalLink className="w-3 h-3 sm:w-3.5 sm:h-3.5 mr-1 sm:mr-1.5" />
               <span className="hidden xs:inline">Open </span>Link
