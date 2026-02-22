@@ -211,7 +211,7 @@ export default function ModelsPage() {
         </div>
 
         {/* ─── Filter Bar ─── */}
-        <div className="relative z-20 flex items-center gap-2.5 pb-5 sm:pb-7 overflow-x-auto scrollbar-thin">
+        <div className="relative z-40 flex flex-wrap items-center gap-2.5 pb-5 sm:pb-7">
           {/* Filter pills */}
           <FilterDropdown label="Body Type" options={bodyTypes} value={bodyType} onChange={setBodyType} />
           <FilterDropdown label="Cup Size" options={cupSizes} value={cupSize} onChange={setCupSize} />
