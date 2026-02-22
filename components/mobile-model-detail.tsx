@@ -83,23 +83,23 @@ export function MobileModelDetail({
 
   return (
     <div className="relative min-h-screen">
-      {/* ====== Blurred Background ====== */}
-      <div className="fixed inset-0 z-0">
+      {/* ====== Blurred Background (top half only) ====== */}
+      <div className="absolute inset-x-0 top-0 h-[45vh] z-0 overflow-hidden">
         <Image
           src="/images/goy.png"
           alt=""
           fill
-          className="object-cover"
+          className="object-cover object-top"
           priority
         />
-        <div className="absolute inset-0 backdrop-blur-[60px] bg-background/70" />
-        <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-background/60 to-background/95" />
+        <div className="absolute inset-0 backdrop-blur-[60px] bg-background/60" />
+        <div className="absolute inset-0 bg-gradient-to-b from-background/30 via-background/70 to-background" />
       </div>
 
       {/* ====== Content ====== */}
       <div className="relative z-10 px-4 pb-28">
         {/* ---- Model Info ---- */}
-        <div className="pt-4">
+        <div className="pt-2">
           <h1 className="text-2xl font-bold text-foreground text-balance">
             {name}
           </h1>
