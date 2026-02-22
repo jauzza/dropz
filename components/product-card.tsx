@@ -67,7 +67,7 @@ export function ProductCard({
             </div>
             <div className="flex items-center gap-1">
               <FolderOpen className="w-3 h-3" />
-              <span>{downloads.toLocaleString()}</span>
+              <span>{String(downloads)}</span>
             </div>
             <div className="flex items-center gap-1">
               <FolderOpen className="w-3 h-3" />
