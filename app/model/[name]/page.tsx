@@ -8,6 +8,8 @@ import { ProductCard } from "@/components/product-card"
 import type { ModelData } from "@/components/product-card"
 import { ModelExpandedView } from "@/components/model-expanded-view"
 import { UserSidebar } from "@/components/user-sidebar"
+import { MobileModelProfile } from "@/components/mobile-model-profile"
+import { useIsMobile } from "@/hooks/use-mobile"
 import { Button } from "@/components/ui/button"
 import {
   Bookmark,
@@ -66,6 +68,7 @@ export default function ModelProfilePage({
   const { name } = use(params)
   const decodedName = decodeURIComponent(name)
   const uploads = getModelUploads(decodedName)
+  const isMobile = useIsMobile()
 
   const [expandedIndex, setExpandedIndex] = useState<number | null>(null)
   const [sidebarOpen, setSidebarOpen] = useState(false)
@@ -77,6 +80,43 @@ export default function ModelProfilePage({
   const resolvedExpandedModel =
     expandedIndex !== null ? uploads[expandedIndex % uploads.length] : null
 
+  /* ---- Mobile layout ---- */
+  if (isMobile) {
+    const contentPacks = uploads.slice(0, 4).map((u) => ({
+      name: u.name,
+      size: u.size,
+      photos: u.downloads,
+      videos: u.files,
+      timeAgo: u.timeAgo,
+      imageSrc: u.imageSrc,
+      isPremium: u.isVerified,
+    }))
+
+    return (
+      <main className="min-h-screen">
+        <LiquidGlassHeader onUserClick={() => setSidebarOpen(true)} />
+        <UserSidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
+
+        <div className="pt-16">
+          <MobileModelProfile
+            name={decodedName}
+            flag="&#127482;&#127480;"
+            age="33 years old"
+            ethnicity="Latina"
+            bio={`Miami-born Latina stunner ${decodedName}, 33 with an athletic 32G enhanced figure at 5'1", rose from fitness modeling dreams post-high school to adult camgirl fame. Married to Joe Taranto since 2017, this gamer and influencer shares solo full nudity, masturbation, plus hardcore boy/girl blowjobs, vaginal, and anal. Confident and body-positive after 605cc implants, she blends sultry workouts with explicit passion.`}
+            aliases={aliases}
+            tags={tags}
+            personalInfo={personalInfo}
+            physicalTraits={physicalTraits}
+            profileImage="/images/goy.png"
+            contentPacks={contentPacks}
+          />
+        </div>
+      </main>
+    )
+  }
+
+  /* ---- Desktop layout ---- */
   return (
     <main className="min-h-screen bg-background">
       <LiquidGlassHeader onUserClick={() => setSidebarOpen(true)} />
