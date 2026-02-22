@@ -49,7 +49,7 @@ function MiniCard({ model }: { model: ModelData }) {
               </div>
               <div className="flex items-center gap-0.5">
                 <FolderOpen className="w-2 h-2 sm:w-2.5 sm:h-2.5" />
-                <span>{model.downloads.toLocaleString()}</span>
+                <span>{String(model.downloads)}</span>
               </div>
               <div className="flex items-center gap-0.5">
                 <FolderOpen className="w-2 h-2 sm:w-2.5 sm:h-2.5" />
@@ -208,7 +208,7 @@ export function ModelExpandedView({
                       </div>
                       <div className="flex items-center gap-0.5">
                         <FolderOpen className="w-2.5 h-2.5" />
-                        <span>{model.downloads.toLocaleString()}</span>
+                        <span>{String(model.downloads)}</span>
                       </div>
                       <div className="flex items-center gap-0.5">
                         <FolderOpen className="w-2.5 h-2.5" />
